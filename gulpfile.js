@@ -11,7 +11,8 @@ var gulp = require('gulp'),
   git = require('gulp-git'),
   filter = require('gulp-filter'),
   tagVersion = require('gulp-tag-version'),
-  inquirer = require('inquirer');
+  inquirer = require('inquirer'),
+  sourcemaps = require('gulp-sourcemaps');
 
 var sources = {
   app: {
@@ -25,15 +26,18 @@ var destinations = {
 
 gulp.task('js:app', function() {
   var tsStream = gulp.src(sources.app.ts)
+    .pipe(sourcemaps.init())
     .pipe(ts({
       declarationFiles: false,
-      noExternalResolve: false
+      noExternalResolve: false,
+      sortOutput: true
     }));
 
   es.merge(
     tsStream.dts.pipe(gulp.dest(destinations.js)),
     tsStream.js
     .pipe(concat('main.js'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(destinations.js))
   );
 });
