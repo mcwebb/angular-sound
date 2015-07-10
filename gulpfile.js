@@ -12,7 +12,10 @@ var gulp = require('gulp'),
   filter = require('gulp-filter'),
   tagVersion = require('gulp-tag-version'),
   inquirer = require('inquirer'),
-  sourcemaps = require('gulp-sourcemaps');
+  sourcemaps = require('gulp-sourcemaps'),
+  ngAnnotate = require('gulp-ng-annotate'),
+  uglify = require('gulp-uglify'),
+  rename = require('gulp-rename');
 
 var sources = {
   app: {
@@ -34,11 +37,20 @@ gulp.task('js:app', function() {
     }));
 
   es.merge(
-    tsStream.dts.pipe(gulp.dest(destinations.js)),
+    tsStream.dts
+      .pipe(gulp.dest(destinations.js)),
     tsStream.js
-    .pipe(concat('main.js'))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(destinations.js))
+      .pipe(concat('main.js'))
+      .pipe(ngAnnotate())
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(destinations.js))
+      .pipe(uglify({
+        angular: true
+      }))
+      .pipe(rename({
+        extname: '.min.js'
+      }))
+      .pipe(gulp.dest(destinations.js))
   );
 });
 
