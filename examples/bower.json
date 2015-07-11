@@ -4,6 +4,6 @@
   "main": "index.html",
   "private": true,
   "dependencies": {
-    "angular-sound": "~0.0.0"
+    "angular-sound": "*"
   }
 }
