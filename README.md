@@ -9,7 +9,7 @@ bower install angular-sound
 ```
 ### Add to your module deps
 ```js
-angular.module('xxxx', ['mcwebb.angular-sound']);
+angular.module('xxxx', ['mcwebb.sound']);
 ```
 
 ## Use

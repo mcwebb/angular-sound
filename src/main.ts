@@ -81,5 +81,5 @@ module AngularSound {
 }
 
 angular
-	.module('mcwebb.angular-sound', [])
+	.module('mcwebb.sound', [])
 	.service('SoundService', AngularSound.SoundService);
