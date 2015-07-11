@@ -1,8 +1,22 @@
 {
   "name": "angular-sound",
   "version": "1.0.1",
+  "keywords": [
+    "angular",
+    "audio",
+    "sound",
+    "web",
+    "api"
+  ],
   "description": "AngularJS service to play audio via the Web Audio API",
   "main": "dist/main.js",
+  "authors": [
+    "Matthew Webb <matthewowebb@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "examples"
+  ],
   "dependencies": {
     "angular": "~1.3.0"
   },
