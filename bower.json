@@ -1,6 +1,6 @@
 {
   "name": "angular-sound",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "AngularJS service to play audio via the Web Audio API",
   "main": "dist/main.js",
   "dependencies": {
