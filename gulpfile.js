@@ -15,12 +15,14 @@ var gulp = require('gulp'),
   sourcemaps = require('gulp-sourcemaps'),
   ngAnnotate = require('gulp-ng-annotate'),
   uglify = require('gulp-uglify'),
-  rename = require('gulp-rename');
+  rename = require('gulp-rename'),
+  browserSync = require('browser-sync');
 
 var sources = {
   app: {
     ts: ['./src/**/*.ts'],
-  }
+  },
+  example: './examples/'
 };
 
 var destinations = {
@@ -33,6 +35,7 @@ gulp.task('js:app', function() {
     .pipe(ts({
       declarationFiles: false,
       noExternalResolve: false,
+      noLib: false,
       sortOutput: true
     }));
 
@@ -63,6 +66,20 @@ gulp.task('clean', function() {
       util.log(util.colors.yellow('/dist directory empty - nothing to delete'));
     }
   });
+});
+
+gulp.task('serve', function () {
+  browserSync({
+    notify: false,
+    port: 9000,
+    server: {
+      baseDir: [sources.example]
+    }
+  });
+
+  gulp.watch([
+    sources.example + '**/*'
+  ]).on('change', browserSync.reload);
 });
 
 gulp.task('build', [

@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>angular-sound-test</title>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-sound/dist/main.js"></script>
+  <script type="text/javascript">
+    angular.module('angular-sound-test', ['mcwebb.angular-sound'])
+    .run(function (SoundService) {
+      SoundService.loadSound({
+        name: 'sound2',
+        src: './sounds/sound2.ogg'
+      });
+    })
+    .controller('MyController', function (SoundService) {
+      var vm = this;
+
+      SoundService.loadSound({
+          name: 'sound1',
+          src: './sounds/sound1.ogg'
+      }).then(function (sound) {
+        vm.sound1 = sound;
+      });
+
+      vm.playSound = function (name) {
+        SoundService.getSound(name).start();
+      }
+    });
+  </script>
+</head>
+<body ng-app="angular-sound-test" ng-controller="MyController as MyController">
+  <button ng-click="MyController.sound1.start()">Play Sound 1</button>
+  <button ng-click="MyController.sound1.stop()">Stop Sound 1</button>
+  <label for="loop-sound1">
+    Loop
+    <input type="checkbox" ng-model="MyController.sound1.loop" />
+  </label>
+  <br />
+  <button ng-click="MyController.playSound('sound2')">Play Sound 2</button>
+  <span ng-if="sound2_elapsed">{{ sound2_elapsed }}s</span>
+  <span ng-if="!sound2_elapsed">Not Playing</span>
+</body>
+</html>

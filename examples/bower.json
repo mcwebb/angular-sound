@@ -1,0 +1,9 @@
+{
+  "name": "angular-sound-test",
+  "description": "test for angular sound",
+  "main": "index.html",
+  "private": true,
+  "dependencies": {
+    "angular-sound": "~0.0.0"
+  }
+}
