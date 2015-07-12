@@ -18,7 +18,8 @@
     "examples"
   ],
   "dependencies": {
-    "angular": "~1.3.0"
+    "angular": "~1.3.0",
+    "audiocontext-patch": "https://github.com/mcwebb/AudioContext-MonkeyPatch.git"
   },
   "devDependencies": {}
 }
